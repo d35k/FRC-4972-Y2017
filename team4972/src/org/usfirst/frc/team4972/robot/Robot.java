@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4972.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,15 +21,21 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
-	RobotDrive body = new RobotDrive(0, 1, 2, 3);
-	Joystick joystick = new Joystick(0);
 
-	/*
-		PWM 1 -sol arka motor
-		PWM 2 - sol on motor
-		PWM 3 - sag arka motor
-		PWM 4 - sag on motor 
- 	*/
+	/**
+	 * Robot motors. We can call it with body.
+	 * PWM 1 - Left Back
+	 * PWM 2 - Left Front
+	 * PWM 3 - Right Back
+	 * PWM 4 - Right Front
+	 * We can use this for Joystick.
+	 */
+	RobotDrive body = new RobotDrive(0, 1, 2, 3);
+
+	/**
+	 * This is what we use when controlling robot. JoyStick
+	 */
+	Joystick joystick = new Joystick(0);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -35,6 +43,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		/**
+		 * For the USB Camera. Display.
+		 */
+		Camera camera = CameraServer.getInstance().startAutomaticCapture(); 
+		camera.setResolution(320,500);
+
+		/**
+		 * For Auto Generated Robot Codes
+		 */
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto choices", chooser);
