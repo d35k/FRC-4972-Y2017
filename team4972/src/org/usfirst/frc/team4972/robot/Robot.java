@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 		/**
 		 * For the USB Camera. Display.
 		 */
-		Camera camera = CameraServer.getInstance().startAutomaticCapture(); 
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(); 
 		camera.setResolution(320,500);
 
 		/**
