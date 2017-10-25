@@ -3,6 +3,9 @@ package org.usfirst.frc.team4972.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -16,6 +19,15 @@ public class Robot extends IterativeRobot {
 	final String customAuto = "My Auto";
 	String autoSelected;
 	SendableChooser<String> chooser = new SendableChooser<>();
+	RobotDrive body = new RobotDrive(0, 1, 2, 3);
+	Joystick joystick = new Joystick(0);
+
+	/*
+		PWM 1 -sol arka motor
+		PWM 2 - sol on motor
+		PWM 3 - sag arka motor
+		PWM 4 - sag on motor 
+ 	*/
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -68,6 +80,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+
 	}
 
 	/**
