@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.RobotDrive;
-// import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.DigitalInput;
 // import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -35,6 +36,16 @@ public class Robot extends IterativeRobot {
 	 * PWM 1 - Right
 	 */
 	RobotDrive body = new RobotDrive(1, 2, 3, 4);
+	/**
+	 * For climb system, Talon PWN 5
+	 */
+	Talon climb = new Talon(5);
+	Talon climbSupport = new Talon(6);
+	Talon gear = new Talon(7);
+	Talon  gearUp = new Talon(8);
+	DigitalInput limit = new DigitalInput(1);
+
+
 
 
 	/**
@@ -109,12 +120,27 @@ public class Robot extends IterativeRobot {
 			/**
 			 * Body is our main motor
 			 */
-			// body.arcadeDrive(joystick);
+			body.arcadeDrive(joystick);
 			
-			/**
-			 * In this case, we use gamepad for controlling robot
-			 */
-			body.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getTwist(), 0);
+			if(joystick.getRawButton(1)) {
+				gear.set(1);
+			} else if (joystick.getRawButton(2)) {
+				gearUp.set(1);
+			} else if (joystick.getRawButton(3)) {
+				gear.set(-1);
+			} else if (joystick.getRawButton(4)) {
+				climb.set(1);
+				climbSupport.set(0.5);
+			} else {
+				gear.set(0);
+				gearUp.set(0);
+				climb.set(0);
+				climbSupport.set(0);
+			}
+			while(limit.get())
+			{
+				gear.set(0);  
+			}
 		}
 	}
 
