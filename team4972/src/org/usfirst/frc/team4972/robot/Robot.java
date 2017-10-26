@@ -122,13 +122,30 @@ public class Robot extends IterativeRobot {
 			 */
 			body.arcadeDrive(joystick);
 			
-			if(joystick.getRawButton(1)) {
+			if (joystick.getRawButton(1)) {
+				/**
+				 * Gear catch
+				 */
 				gear.set(1);
 			} else if (joystick.getRawButton(2)) {
+				/**
+				 * Gear Up
+				 */
 				gearUp.set(1);
-			} else if (joystick.getRawButton(3)) {
-				gear.set(-1);
+			} else if (joystick.getRawButton(3)){
+				/**
+				 * Gear Down
+				 */
+				gearUp.set(-1);
 			} else if (joystick.getRawButton(4)) {
+				/**
+				 * Gear release
+				 */
+				gear.set(-1);
+			} else if (joystick.getRawButton(5)) {
+				/**
+				 * Climb
+				 */
 				climb.set(1);
 				climbSupport.set(0.5);
 			} else {
@@ -137,8 +154,11 @@ public class Robot extends IterativeRobot {
 				climb.set(0);
 				climbSupport.set(0);
 			}
-			while(limit.get())
-			{
+			
+			while (limit.get()){
+				/**
+				 * Gear Switch
+				 */
 				gear.set(0);  
 			}
 		}
