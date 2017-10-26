@@ -31,8 +31,8 @@ public class Robot extends IterativeRobot {
 	 * PWM 3 - Right Back
 	 * PWM 4 - Right Front
 	 * We can use this for Joystick.
-	 * PWM 1 - Left
-	 * PWM 2 - Right
+	 * PWM 0 - Left
+	 * PWM 1 - Right
 	 */
 	RobotDrive body = new RobotDrive(0, 1);
 
@@ -108,7 +108,12 @@ public class Robot extends IterativeRobot {
 			/**
 			 * Body is our main motor
 			 */
-			body.arcadeDrive(joystick);
+			// body.arcadeDrive(joystick);
+			
+			/**
+			 * In this case, we use gamepad for controlling robot
+			 */
+			body.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getTwist(),0);
 		}
 	}
 
