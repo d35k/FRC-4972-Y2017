@@ -114,7 +114,7 @@ public class Robot extends IterativeRobot {
 			/**
 			 * In this case, we use gamepad for controlling robot
 			 */
-			body.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getTwist(),0);
+			body.mecanumDrive_Cartesian(joystick.getX(), joystick.getY(), joystick.getTwist(), 0);
 		}
 	}
 
