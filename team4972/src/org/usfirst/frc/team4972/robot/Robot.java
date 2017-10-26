@@ -34,7 +34,8 @@ public class Robot extends IterativeRobot {
 	 * PWM 0 - Left
 	 * PWM 1 - Right
 	 */
-	RobotDrive body = new RobotDrive(0, 1);
+	RobotDrive body = new RobotDrive(1, 2, 3, 4);
+
 
 	/**
 	 * This is what we use when controlling robot. JoyStick
@@ -51,7 +52,7 @@ public class Robot extends IterativeRobot {
 		 * For the USB Camera. Display.
 		 */
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(); 
-		camera.setResolution(320,500);
+		camera.setResolution(320, 500);
 
 		/**
 		 * For Auto Generated Robot Codes
