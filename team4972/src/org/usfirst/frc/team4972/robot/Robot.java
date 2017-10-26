@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.RobotDrive;
+// import edu.wpi.first.wpilibj.Talon;
+// import edu.wpi.first.wpilibj.Victor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,8 +31,10 @@ public class Robot extends IterativeRobot {
 	 * PWM 3 - Right Back
 	 * PWM 4 - Right Front
 	 * We can use this for Joystick.
+	 * PWM 1 - Left
+	 * PWM 2 - Right
 	 */
-	RobotDrive body = new RobotDrive(0, 1, 2, 3);
+	RobotDrive body = new RobotDrive(0, 1);
 
 	/**
 	 * This is what we use when controlling robot. JoyStick
@@ -97,7 +101,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-
+		/**
+		 * This while for joystick motor movement. 
+		 */
+		while(isOperatorControl() & isEnabled()){
+			/**
+			 * Body is our main motor
+			 */
+			body.arcadeDrive(joystick);
+		}
 	}
 
 	/**
